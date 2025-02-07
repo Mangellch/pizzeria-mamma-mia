@@ -12,8 +12,6 @@ const Navbar = () => {
         <div className="navbar-items d-flex gap-2">
           <p className="navbar-brand"> Pizzería Mamma Mía!</p>
           <button className="btn btn-outline">🍕 Home</button>
-          <button className="btn btn-outline">🔓 Profile</button>
-          <button className="btn btn-outline">🔒 Logout</button>
           <button className="btn btn-outline">🔐 Login</button>
           <button className="btn btn-outline">🔐 Register</button>
           <button className="btn btn-outline">🛒 Total: ${formatTotal(total)}</button>
