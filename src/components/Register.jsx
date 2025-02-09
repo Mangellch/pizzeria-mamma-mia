@@ -2,22 +2,35 @@ import React, { useState } from "react";
 import "./register.css";
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [usuario, setUsuario] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-  const isValidEmail = (email) => { 
-    
+  const [message, setMessage] = useState(""); 
+
+  const handleOnChange = (e) => {
+    setUsuario((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
+  const isValidEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     let errorMessage = "";
 
+    const { email, password, confirmPassword } = usuario;
+
+    console.log(email, password, confirmPassword);
+
     // Validaciones
-    if (!email || !password || !confirmPassword) {
+    if (!email.trim() || !password.trim() || !confirmPassword.trim()) {
       errorMessage = "⚠ Todos los campos son obligatorios.";
     } else if (!isValidEmail(email)) {
       errorMessage = "⚠ Ingresa un email válido.";
@@ -29,12 +42,13 @@ const Register = () => {
 
     if (errorMessage) {
       setMessage(errorMessage);
-      return; 
+      return;
     }
 
     // Si pasa todas las validaciones
     setMessage("");
     alert("✅ Registro exitoso.");
+    window.location.reload();
   };
 
   return (
@@ -49,9 +63,8 @@ const Register = () => {
               type="email"
               placeholder="Email"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+              value={usuario.email}
+              onChange={handleOnChange} 
             />
           </div>
 
@@ -61,27 +74,25 @@ const Register = () => {
               type="password"
               placeholder="Contraseña"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+              value={usuario.password}
+              onChange={handleOnChange}
             />
           </div>
 
           <div className="items">
-            <label htmlFor="repeat-password">Repetir contraseña</label>
+            <label htmlFor="confirmPassword">Repetir contraseña</label> 
             <input
               type="password"
               placeholder="Repetir contraseña"
-              id="repeat-password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
+              id="confirmPassword"
+              value={usuario.confirmPassword}
+              onChange={handleOnChange}
             />
           </div>
 
-          {message && <p className="message">{message}</p>}
-
           <button type="submit">Registrate</button>
+
+          {message && <p className="message">{message}</p>}
         </div>
       </form>
     </>

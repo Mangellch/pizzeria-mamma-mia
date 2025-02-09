@@ -54,3 +54,8 @@ button {
     background-color: #565454;
 }
 
+.message {
+    font-size: bold;
+    text-transform: uppercase;
+    color: red;
+}

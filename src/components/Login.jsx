@@ -2,9 +2,18 @@ import React, { useState } from "react";
 import "./login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [usuario, setUsuario] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [message, setMessage] = useState(""); 
+  const handleOnChange = (e) => {
+    setUsuario((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  };
 
   const isValidEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -14,8 +23,12 @@ const Login = () => {
     e.preventDefault();
     let errorMessage = "";
 
+    const { email, password } = usuario;
+
+    console.log(email, password);
+
     // Validaciones
-    if (!email || !password) {
+    if (!email.trim() || !password.trim()) {
       errorMessage = "⚠ Todos los campos son obligatorios.";
     } else if (!isValidEmail(email)) {
       errorMessage = "⚠ Ingresa un email válido.";
@@ -31,6 +44,7 @@ const Login = () => {
     // Si pasa todas las validaciones
     setMessage("");
     alert("✅ Iniciaste sesión con éxito.");
+    window.location.reload();
   };
 
   return (
@@ -45,9 +59,8 @@ const Login = () => {
               type="email"
               placeholder="Email"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+              value={usuario.email}
+              onChange={handleOnChange} 
             />
           </div>
 
@@ -57,15 +70,14 @@ const Login = () => {
               type="password"
               placeholder="Contraseña"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+              value={usuario.password}
+              onChange={handleOnChange}
             />
           </div>
 
-          {message && <p className="message">{message}</p>}
-
           <button type="submit">Iniciar sesión</button>
+
+          {message && <p className="message">{message}</p>}
         </div>
       </form>
     </>
