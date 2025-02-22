@@ -1,11 +1,13 @@
 import React from 'react';
+import './cardpizza.css';
 
-const CardPizza = ({ name, price, ingredients, img }) => {
+const CardPizza = ({ name, price, ingredients, img, desc }) => {
   return (
     <div className="card">
       <img src={img} alt={name} className="card-img-top" />
       <div className="card-body">
         <h5 className="card-title">{name}</h5>
+        <p className="card-description">{desc}</p>
         <p className="card-text">Ingredientes:</p>
         <ul className="ingredient-list">
           {ingredients.map((ingredient, index) => (

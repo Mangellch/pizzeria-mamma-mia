@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import CardPizza from './CardPizza';
-import { pizzas } from '../data/pizzas';
-import '../index.css';
+import { getPizzas } from '.../data/pizzas';
+import './index.css';
 
 const Home = () => {
+  const [pizzas, setPizzas] = useState([]);
+
+  useEffect(() => {
+    const fetchPizzas = async () => {
+      const pizzaData = await getPizzas();
+      console.log(pizzaData); 
+      setPizzas(pizzaData);
+    };
+
+    fetchPizzas();
+  }, []);
+
   return (
     <>
       <Header />
@@ -16,6 +28,7 @@ const Home = () => {
             price={pizza.price}
             ingredients={pizza.ingredients}
             img={pizza.img}
+            desc={pizza.desc} 
           />
         ))}
       </div>
