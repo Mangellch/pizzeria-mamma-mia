@@ -1,0 +1,54 @@
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f0f0f0;
+}
+
+.not-found-card {
+  padding: 10px;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.not-found-image {
+  width:400px;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 20px; 
+}
+
+.not-found-title {
+  font-size: 3rem;
+  color: var(--ColorGris);
+  text-transform: uppercase;
+}
+
+.not-found-text {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--ColorGris);
+}
+
+.not-found-link {
+  background-color: #565454;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  text-decoration: none; 
+  display: inline-block;
+}
+
+.not-found-link:hover {
+  background-color: #4e4e4e;
+}

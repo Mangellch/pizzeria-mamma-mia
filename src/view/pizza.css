@@ -35,6 +35,7 @@
 .pizza-card .card-description {
   font-size: 15px;
   text-align: center;
+  padding: 1rem;
 }
 
 .pizza-card .card-text {

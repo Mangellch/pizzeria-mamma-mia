@@ -5,6 +5,19 @@
 }
 
 /* Estilos globales */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -80,47 +93,6 @@ button {
   border-radius: 5px;
 }
 
-/* Navbar */
-.navbar {
-  background-color: var(--ColorNegro);
-  padding: 0.5rem;
-}
-
-.navbar-items {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.navbar-items button:last-child {
-  margin-left: auto;
-}
-
-.navbar-brand {
-  padding-right: 1rem;
-  padding-left: 1rem;
-  color: #ffffff;
-}
-
-.navbar-menu {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-.navbar-menu a {
-  color: #ffffff;
-  text-decoration: none;
-  padding: 8px 15px;
-  font-size: 14px;
-  border-radius: 5px;
-}
-
-.navbar-menu a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
 /* Menú móvil */
 .navbar-toggle {
   display: none;
@@ -158,7 +130,9 @@ button {
   color: #ffffff;
   padding: 1rem;
   text-align: center;
+  width: 100%;
 }
+
 
 /* Media Queries */
 

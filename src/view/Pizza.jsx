@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import './pizza.css'; // Importa el archivo CSS específico
+import './pizza.css'; 
 
 const Pizza = () => {
   const [pizza, setPizza] = useState(null);

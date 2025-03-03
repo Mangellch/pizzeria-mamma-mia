@@ -1,9 +1,10 @@
 import React from 'react';
-import './cardpizza.css';
+import './CardPizza.css';
+
 
 const CardPizza = ({ name, price, ingredients, img, desc }) => {
   return (
-    <div className="card">
+    <div className="pizza-card">
       <img src={img} alt={name} className="card-img-top" />
       <div className="card-body">
         <h5 className="card-title">{name}</h5>

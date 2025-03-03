@@ -1,25 +1,32 @@
-import React, { useState } from "react";
-import { pizzaCart } from "../data/pizzas";
+import React, { useState, useEffect } from "react";
+import { getPizzas } from "../data/pizzas";
 import "./cart.css";
 
 const Cart = () => {
-  const [cart, setCart] = useState(pizzaCart);
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const fetchPizzas = async () => {
+      const pizzas = await getPizzas();
+
+      const pizzasWithCount = pizzas.map((pizza) => ({ ...pizza, count: 1 }));
+      setCart(pizzasWithCount);
+    };
+    fetchPizzas();
+  }, []);
 
   const increaseQuantity = (id) => {
-    setCart(
-      cart.map((pizza) =>
-        pizza.id === id ? { ...pizza, count: pizza.count + 1 } : pizza
-      )
-    );
+    setCart(cart.map((pizza) =>
+      pizza.id === id ? { ...pizza, count: pizza.count + 1 } : pizza
+    ));
   };
 
   const decreaseQuantity = (id) => {
-    setCart(
-      cart
-        .map((pizza) =>
-          pizza.id === id ? { ...pizza, count: pizza.count - 1 } : pizza
-        )
-        .filter((pizza) => pizza.count > 0)  // Elimina pizza si count es 0
+    setCart(cart
+      .map((pizza) =>
+        pizza.id === id ? { ...pizza, count: pizza.count - 1 } : pizza
+      )
+      .filter((pizza) => pizza.count > 0) // Eliminamos la pizza si count es 0
     );
   };
 
