@@ -1,13 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; 
 
-import React from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 import { formatTotal } from "../helpers/helpers.js";
 
 const Navbar = () => {
-  const total = 43730;
-  const token = false;
+  const { total, cart } = useCart(); // Obtener el total y el carrito desde el contexto
+  const cartItemCount = cart.length;
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-3">
@@ -37,7 +37,8 @@ const Navbar = () => {
           </div>
           <div className="ms-auto">
             <Link to="/cart" className="btn btn-outline-warning">
-              🛒 Total: ${formatTotal(total)}
+              🛒 Total: ${formatTotal(total)} 
+              {cartItemCount > 0 && <span className="badge bg-danger ms-2">{cartItemCount}</span>}
             </Link>
           </div>
         </div>

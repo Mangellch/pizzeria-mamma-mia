@@ -1,39 +1,42 @@
-import { useState, useEffect } from "react";
-import './pizza.css'; 
+import React, { useState, useEffect } from 'react';
+import { useCart } from "../context/CartContext"; 
+import { getPizzas } from "../data/pizzas";
+import './pizza.css';
 
 const Pizza = () => {
-  const [pizza, setPizza] = useState(null);
+  const [pizzas, setPizzas] = useState([]);
+  const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/pizzas/p001')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Error fetching pizza');
-        }
-        return response.json();
-      })
-      .then((data) => setPizza(data))
-      .catch((error) => console.error("Error fetching pizza:", error));
-  }, []); 
+    const fetchPizzas = async () => {
+      const pizzasData = await getPizzas();
+      setPizzas(pizzasData);
+    };
+    
+    fetchPizzas();
+  }, []);
 
-  if (!pizza) {
-    return <div>Loading...</div>;
-  }
+  const pizza = pizzas.find((pizza) => pizza.id === "p001"); 
 
   return (
-    <div className="pizza-card"> 
-        <img src={pizza.img} alt={pizza.name} className="card-img-top"/>
-        <div className="card-body">
-            <h2 className="card-title">{pizza.name}</h2>
-            <p className="card-description">{pizza.desc}</p>
-            <p className="card-price"><strong>Precio:</strong> ${pizza.price}</p>
-            <p className="card-text" ><strong>Ingredientes:</strong></p>
-            <p className="ingredient-list"> {pizza.ingredients.join(", ")}</p>
-            <div className="buttons">
-                <button className="btn btn-primary">Ver más</button>
-                <button className="btn btn-secondary">Añadir al carrito</button>
-            </div>
-        </div>
+    <div className="pizza-container">
+      <div className="pizza-details">
+        <h2>{pizza?.name}</h2>
+        <img src={pizza?.img} alt={pizza?.name} />
+        <p>{pizza?.desc}</p>
+        <ul>
+          {pizza?.ingredients?.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
+        <p className="price">Precio: ${pizza?.price.toLocaleString()}</p>
+        <button
+          className="btn-add-cart"
+          onClick={() => addToCart(pizza)}
+        >
+          Añadir al carrito 🛒
+        </button>
+      </div>
     </div>
   );
 };

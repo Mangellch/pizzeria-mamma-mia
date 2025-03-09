@@ -1,8 +1,12 @@
-import React from 'react';
-import './CardPizza.css';
+import { useCart } from "../context/CartContext";  
+import './cardpizza.css';
 
+const CardPizza = ({ id, name, price, ingredients, img, desc }) => {
+  const { addToCart } = useCart(); // Obtienes la función para agregar al carrito
 
-const CardPizza = ({ name, price, ingredients, img, desc }) => {
+  // Aquí no hace falta modificar nada en cuanto a la lógica. 
+  // Pero pasamos el objeto completo de la pizza al carrito.
+
   return (
     <div className="pizza-card">
       <img src={img} alt={name} className="card-img-top" />
@@ -18,7 +22,12 @@ const CardPizza = ({ name, price, ingredients, img, desc }) => {
         <p className="card-price">Precio: ${price.toLocaleString()}</p>
         <div className="buttons">
           <button className="btn btn-primary">Ver más</button>
-          <button className="btn btn-secondary">Añadir al carrito</button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => addToCart({ id, name, price, ingredients, img, desc })} // Agregar pizza completa
+          >
+            Añadir al carrito 🛒
+          </button>
         </div>
       </div>
     </div>
