@@ -1,0 +1,41 @@
+.hero-image {
+  position: relative;
+  height: 330px;
+  width: 100%;
+  background-image: url('/img/Header.jpg'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.hero-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.616); 
+  z-index: 1;
+}
+
+.hero-content h1,
+.hero-content p {
+  position: relative;
+  z-index: 2;
+}
+
+nav.navbar {
+  position: relative; 
+  z-index: 10;
+}
+
+.hero-content {
+   border-bottom: 1px solid rgba(104, 104, 104, 0.526);
+   width: 70%;
+   position: relative; 
+   z-index: 2;
+   text-align: center;
+}
