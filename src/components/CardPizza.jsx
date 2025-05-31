@@ -8,7 +8,7 @@ const CardPizza = (props) => {
         
         <div 
           className="card-body d-flex flex-column" 
-          style={{ minHeight: '320px' }} // ajusta a la altura que quieras para igualar
+          style={{ minHeight: '320px' }} 
         >
           <h3 className="card-title text-center">{props.name}</h3>
           <p className="card-text mb-1 fw-bold border-bottom">Ingredientes:</p>
