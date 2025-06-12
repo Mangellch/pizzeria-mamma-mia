@@ -1,9 +1,10 @@
 import './App.css'
 import Footer from './components/Footer'
-import Home from './components/Home'
-import Login from './components/Login'
+// import Home from './components/Home'
+// import Login from './components/Login'
 import Navbar from './components/Navbar'
-import Register from './components/Register'
+// import Register from './components/Register'
+import Cart from './components/Cart'
 
 function App() {
 
@@ -11,8 +12,9 @@ function App() {
     <>
       <Navbar/>
       {/* <Home/> */}
-      <Login/>
+      {/* <Login/> */}
       {/* <Register/> */}
+      <Cart/>
       <Footer/>
     </>
   )
