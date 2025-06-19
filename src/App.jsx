@@ -1,6 +1,6 @@
 import './App.css'
 import Footer from './components/Footer'
-import Home from './components/Home'
+// import Home from './components/Home'
 // import Login from './components/Login'
 import Navbar from './components/Navbar'
 import Pizza from './components/Pizza'
@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Navbar/>
-      <Home/>
+      {/* <Home/> */}
       {/* <Login/> */}
       {/* <Register/> */}
       < Pizza/>
