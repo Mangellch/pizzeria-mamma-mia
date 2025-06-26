@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { formatPrice } from '../assets/helpers/formatPrice'; 
+import { useParams } from 'react-router-dom';
+import { formatPrice } from '../../assets/helpers/formatPrice'; 
 
 const Pizza = () => {
+  const { pizzaId } = useParams(); 
   const [pizza, setPizza] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,7 +23,7 @@ const Pizza = () => {
     };
 
     fetchPizza();
-  }, []);
+  }, [pizzaId]); 
 
   if (loading) return <p>Cargando pizza...</p>;
   if (error) return <p>Error: {error}</p>;

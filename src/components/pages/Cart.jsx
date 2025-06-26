@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { pizzaCart as initialCart } from '../assets/helpers/pizzas';
-import { formatPrice } from '../assets/helpers/formatPrice';
+import { pizzaCart as initialCart } from '../../assets/helpers/pizzas';
+import { formatPrice } from '../../assets/helpers/formatPrice';
 
 const Cart = () => {
   const [cart, setCart] = useState(initialCart);
