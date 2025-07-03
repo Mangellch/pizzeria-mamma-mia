@@ -27,7 +27,7 @@ const Login = () => {
     setPassword('');
     }
   return (
-     <div className="container mt-5" style={{ maxWidth: '500px' }}>
+     <div className="container vh-100 align-items-center justify-content-center mt-4 " style={{ maxWidth: '500px' }}>
       <h2 className="mb-4 text-center">Inicio de sesión</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

@@ -8,7 +8,7 @@ const Profile = () => {
   };
 
   return (
-    <div className='container mt-4 mb-4' style={{maxWidth: '400px'}}>
+    <div className='container mt-4 vh-100 align-items-center justify-content-center' style={{maxWidth: '400px'}}>
         <div className='card text-center'>
             <div className='card-header'>
                 <h2 className='card-title'>Perfil de Usuario</h2>

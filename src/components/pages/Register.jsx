@@ -36,7 +36,7 @@ const Register = () => {
   };
 
   return (
-    <div className="container mt-5" style={{ maxWidth: '500px' }}>
+    <div className="container mt-5 vh-100 align-items-center justify-content-center mb-4" style={{ maxWidth: '500px' }}>
       <h2 className="mb-4 text-center">Formulario de Registro</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
