@@ -1,7 +1,15 @@
 import { Link } from 'react-router-dom';
 import { formatPrice } from '../assets/helpers/formatPrice';
+import { useCart } from '../context/CartContext'; 
 
 const CardPizza = ({ id, img, name, price, ingredients, desc }) => {
+  const { addToCart } = useCart(); // usamos el contexto
+
+  const handleAdd = () => {
+    const pizza = { id, name, price, img }; 
+    addToCart(pizza);
+  };
+
   return (
     <div className="card" style={{ width: '30rem' }}>
       <img src={img} className="card-img-top" alt={name} />
@@ -26,7 +34,9 @@ const CardPizza = ({ id, img, name, price, ingredients, desc }) => {
             Ver más
           </Link>
 
-          <button className="btn btn-dark">Añadir</button>
+          <button className="btn btn-dark" onClick={handleAdd}>
+            Añadir
+          </button>
         </div>
       </div>
     </div>

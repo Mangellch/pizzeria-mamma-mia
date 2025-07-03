@@ -1,32 +1,10 @@
-import { useState } from 'react';
-import { pizzaCart as initialCart } from '../../assets/helpers/pizzas';
+import { useCart } from "../../context/CartContext";
 import { formatPrice } from '../../assets/helpers/formatPrice';
 
 const Cart = () => {
-  const [cart, setCart] = useState(initialCart);
+  const { cart, increment, decrement, getTotal } = useCart();
 
-  // Aumentar cantidad
-  const increase = (id) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === id ? { ...item, count: item.count + 1 } : item
-      )
-    );
-  };
-
-  // Disminuir cantidad o eliminar si es 0
-  const decrease = (id) => {
-    setCart((prevCart) =>
-      prevCart
-        .map((item) =>
-          item.id === id ? { ...item, count: item.count - 1 } : item
-        )
-        .filter((item) => item.count > 0)
-    );
-  };
-
-  // Calcular total
-  const total = cart.reduce((acc, item) => acc + item.price * item.count, 0);
+  const total = getTotal();
 
   return (
     <div className="container vh-100 align-items-center justify-content-center mt-4">
@@ -59,14 +37,14 @@ const Cart = () => {
               <div className="d-flex align-items-center gap-2">
                 <button
                   className="btn btn-outline-danger btn-sm"
-                  onClick={() => decrease(pizza.id)}
+                  onClick={() => decrement(pizza.id)}
                 >
                   -
                 </button>
-                <span className="fw-bold">{pizza.count}</span>
+                <span className="fw-bold">{pizza.quantity}</span>
                 <button
                   className="btn btn-outline-primary btn-sm"
-                  onClick={() => increase(pizza.id)}
+                  onClick={() => increment(pizza.id)}
                 >
                   +
                 </button>

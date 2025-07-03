@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Header";
 import CardPizza from "../CardPizza";
+import { useCart } from "../../context/CartContext";
 
 const Home = () => {
   const [pizzas, setPizzas] = useState([]);

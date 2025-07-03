@@ -1,10 +1,11 @@
-import React from 'react';
+import { useCart } from "../../context/CartContext";
 import { Link } from 'react-router-dom';
 
 import { formatPrice } from '../../assets/helpers/formatPrice';
 
 const Navbar = () => {
-  const total = 25000;
+  const { getTotal } = useCart();
+  const total = getTotal();
 
   const handleLogout = () => {
     alert("Cerrar sesión (funcionalidad aún no implementada)");
