@@ -1,10 +1,5 @@
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
-body {
-    font-family: "Open Sans", sans-serif;
-}
+/*Para el texto de las cards*/
+.card-title,
+ul.list-unstyled.ms-3.flex-grow-1 {
+    text-transform: capitalize;
+} 

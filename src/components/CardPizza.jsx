@@ -1,13 +1,17 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { formatPrice } from '../assets/helpers/formatPrice';
-import { useCart } from '../context/CartContext'; 
+import { useCart } from '../context/CartContext';
 
 const CardPizza = ({ id, img, name, price, ingredients, desc }) => {
-  const { addToCart } = useCart(); // usamos el contexto
+  const { addToCart } = useCart();
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleAdd = () => {
-    const pizza = { id, name, price, img }; 
+    const pizza = { id, name, price, img };
     addToCart(pizza);
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 2000);
   };
 
   return (
@@ -25,11 +29,22 @@ const CardPizza = ({ id, img, name, price, ingredients, desc }) => {
           ))}
         </ul>
 
-        <p className="card-text text-center mt-3">
+        <p className="card-text text-center mt-1">
           Price: {formatPrice(price)}
         </p>
 
-        <div className="d-flex gap-3 justify-content-center mt-auto">
+        <div
+          className="alert alert-success text-center p-2"
+          role="alert"
+          style={{
+            visibility: showAlert ? 'visible' : 'hidden',
+            transition: 'visibility 0.3s',
+          }}
+        >
+          🍕 Pizza añadida con éxito
+        </div>
+
+        <div className="d-flex gap-3 justify-content-center">
           <Link to={`/pizza/${id}`} className="btn btn-dark">
             Ver más
           </Link>

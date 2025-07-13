@@ -1,11 +1,8 @@
-
 const Footer = () => {
   return (
-    <div>
-        <p className="footer text-center bg-dark text-white py-3">
-            © 2025 Pizzería Mamma Mia. Todos los derechos reservados.
-        </p>
-    </div>
+    <footer className="footer bg-dark text-white text-center py-3">
+      © 2025 Pizzería Mamma Mia. Todos los derechos reservados.
+    </footer>
   );
 };
 

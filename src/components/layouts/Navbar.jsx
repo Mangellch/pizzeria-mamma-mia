@@ -1,18 +1,15 @@
 import { useCart } from "../../context/CartContext";
+import { useUser } from "../../context/UserContext";
 import { Link } from 'react-router-dom';
-
 import { formatPrice } from '../../assets/helpers/formatPrice';
 
 const Navbar = () => {
   const { getTotal } = useCart();
+  const { token, logout } = useUser(); //nuevo hook 
   const total = getTotal();
 
-  const handleLogout = () => {
-    alert("Cerrar sesión (funcionalidad aún no implementada)");
-  };
-
   return (
-    <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
+    <nav className="navbar navbar-expand-lg bg-dark navbar-dark" style={{ position: 'sticky', top: 0, zIndex: 1020 }}>
       <div className="container-fluid">
         <Link className="navbar-brand text-white" to="/">
           Pizzería Mamma Mia
@@ -33,50 +30,55 @@ const Navbar = () => {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link
-                className="nav-link border border-white text-white rounded px-3"
+                className="nav-link border border-white text-white rounded px-3 mx-1"
                 to="/"
               >
                 🍕 Home
               </Link>
             </li>
 
-            <li className="nav-item">
-              <Link
-                className="nav-link border border-white text-white rounded px-3"
-                to="/profile"
-              >
-                🔓 Profile
-              </Link>
-            </li>
+            {token ? (
+              <>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link border border-white text-white rounded px-3 mx-1"
+                    to="/profile"
+                  >
+                    🔓 Profile
+                  </Link>
+                </li>
 
-            <li className="nav-item">
-              {/* Logout como botón para disparar alerta */}
-              <button
-                className="nav-link btn btn-link border border-white text-white rounded px-3"
-                style={{ cursor: 'pointer' }}
-                onClick={handleLogout}
-              >
-                🔒 Logout
-              </button>
-            </li>
+                <li className="nav-item">
+                  <button
+                    className="nav-link btn btn-link border border-white text-white rounded px-3 mx-1"
+                    style={{ cursor: 'pointer' }}
+                    onClick={logout}
+                  >
+                    🔒 Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link border border-white text-white rounded px-3 mx-1"
+                    to="/login"
+                  >
+                    🔐 Login
+                  </Link>
+                </li>
 
-            <li className="nav-item">
-              <Link
-                className="nav-link border border-white text-white rounded px-3"
-                to="/login"
-              >
-                🔐 Login
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link
-                className="nav-link border border-white text-white rounded px-3"
-                to="/register"
-              >
-                🔐 Register
-              </Link>
-            </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link border border-white text-white rounded px-3 mx-1"
+                    to="/register"
+                  >
+                    🔐 Register
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
 
           <ul className="navbar-nav ms-auto">

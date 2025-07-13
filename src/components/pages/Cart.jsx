@@ -1,9 +1,11 @@
 import { useCart } from "../../context/CartContext";
 import { formatPrice } from '../../assets/helpers/formatPrice';
+import { useUser } from "../../context/UserContext";
+
 
 const Cart = () => {
   const { cart, increment, decrement, getTotal } = useCart();
-
+  const { token } = useUser();
   const total = getTotal();
 
   return (
@@ -54,7 +56,8 @@ const Cart = () => {
 
           <div className="text-start mt-4 mb-4">
             <h4>Total: {formatPrice(total)}</h4>
-            <button className="btn btn-dark mt-2">Pagar</button>
+            <button className="btn btn-dark mt-2" disabled={!token}>Pagar</button>
+            {!token && <p className="text-danger mt-2">Debes iniciar sesión para pagar.</p>}
           </div>
         </>
       )}

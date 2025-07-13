@@ -1,17 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { formatPrice } from '../../assets/helpers/formatPrice'; 
+import { useCart } from '../../context/CartContext';
+import { useNavigate } from 'react-router-dom';
+
 
 const Pizza = () => {
-  const { pizzaId } = useParams(); 
+  const { pizzaId } = useParams();
+  const { addToCart } = useCart(); 
+  const [showAlert, setShowAlert] = useState(false);
   const [pizza, setPizza] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const handleAdd = () => {
+  addToCart(pizza);
+  setShowAlert(true);
+  setTimeout(() => setShowAlert(false), 2000);
+};
+
+const navigate = useNavigate();
+const handleBack = () => {
+  navigate('/'); 
+};
+
 //aca utilizamos un useEffect para hacer la peticion a la api y obtener la pizza
   useEffect(() => {
     const fetchPizza = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/pizzas/p001');
+        const res = await fetch(`http://localhost:5000/api/pizzas/${pizzaId}`);
         if (!res.ok) throw new Error('No se pudo obtener la pizza');
         const data = await res.json();
         setPizza(data);
@@ -48,10 +65,18 @@ const Pizza = () => {
         <p className="card-text text-center mt-3">
           Price: {formatPrice(pizza.price)}
         </p>
-
+          {showAlert && (
+            <div className="alert alert-success text-center" role="alert">
+              🍕 Pizza añadida con éxito
+            </div>
+          )}
         <div className="d-flex gap-3 justify-content-center mt-auto">
-          <a href="#" className="btn btn-dark">Ver más</a>
-          <a href="#" className="btn btn-dark">Añadir</a>
+          <button className="btn btn-dark" 
+          onClick={handleBack}>Volver al menú</button>
+
+          <button className="btn btn-dark" onClick={handleAdd}>
+            Añadir
+          </button>
         </div>
       </div>
     </div>
