@@ -1,33 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useUser } from '../../context/UserContext';
 
 const Login = () => {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const [message, setMessage] = React.useState('');
-    const [error, setError] = React.useState(false);
+  const { login } = useUser();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        if (!email || !password) {
-            setMessage('Por favor, completa todos los campos.');
-            setError(true);
-            return;
-        }
-
-        if (password.length < 6) {
-            setMessage('La contraseña debe tener al menos 6 caracteres.');
-            setError(true);
-            return;
-        }
-
-    setMessage('¡Inicio de sesión exitoso!');
-    setError(false);
-    setEmail('');
-    setPassword('');
+    if (!email || !password) {
+      setMessage('Por favor, completa todos los campos.');
+      setError(true);
+      return;
     }
+
+    if (password.length < 6) {
+      setMessage('La contraseña debe tener al menos 6 caracteres.');
+      setError(true);
+      return;
+    }
+
+    const result = await login({ email, password });
+
+    if (result.success) {
+      setMessage('¡Inicio de sesión exitoso!');
+      setError(false);
+      setEmail('');
+      setPassword('');
+
+    } else {
+      setMessage(result.message || 'Error en inicio de sesión');
+      setError(true);
+    }
+  };
+
   return (
-     <div className="container vh-100 align-items-center justify-content-center mt-4 " style={{ maxWidth: '500px' }}>
+    <div className="container vh-100 align-items-center justify-content-center mt-4" style={{ maxWidth: '500px' }}>
       <h2 className="mb-4 text-center">Inicio de sesión</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -64,5 +75,4 @@ const Login = () => {
   );
 };
 
-
-export default Login
+export default Login;

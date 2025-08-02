@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { useUser } from '../../context/UserContext';
 
 const Register = () => {
+  const { register } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!email || !password || !confirmPassword) {
@@ -28,11 +30,19 @@ const Register = () => {
       return;
     }
 
-    setMessage('¡Registro exitoso!');
-    setError(false);
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
+    const result = await register({ email, password });
+
+    if (result.success) {
+      setMessage('¡Registro exitoso!');
+      setError(false);
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      // Aquí puedes redirigir o hacer algo más si quieres
+    } else {
+      setMessage(result.message || 'Error en el registro');
+      setError(true);
+    }
   };
 
   return (

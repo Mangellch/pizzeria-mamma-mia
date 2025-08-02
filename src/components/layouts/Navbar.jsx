@@ -1,15 +1,24 @@
 import { useCart } from "../../context/CartContext";
 import { useUser } from "../../context/UserContext";
-import { Link } from 'react-router-dom';
-import { formatPrice } from '../../assets/helpers/formatPrice';
+import { Link } from "react-router-dom";
+import { formatPrice } from "../../assets/helpers/formatPrice";
 
 const Navbar = () => {
   const { getTotal } = useCart();
-  const { token, logout } = useUser(); //nuevo hook 
+  const { token, logout } = useUser();
   const total = getTotal();
 
+  const handleLogout = () => {
+    if (window.confirm("¿Seguro que quieres cerrar sesión?")) {
+      logout();
+    }
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg bg-dark navbar-dark" style={{ position: 'sticky', top: 0, zIndex: 1020 }}>
+    <nav
+      className="navbar navbar-expand-lg bg-dark navbar-dark"
+      style={{ position: "sticky", top: 0, zIndex: 1020 }}
+    >
       <div className="container-fluid">
         <Link className="navbar-brand text-white" to="/">
           Pizzería Mamma Mia
@@ -51,8 +60,8 @@ const Navbar = () => {
                 <li className="nav-item">
                   <button
                     className="nav-link btn btn-link border border-white text-white rounded px-3 mx-1"
-                    style={{ cursor: 'pointer' }}
-                    onClick={logout}
+                    style={{ cursor: "pointer" }}
+                    onClick={handleLogout}
                   >
                     🔒 Logout
                   </button>
