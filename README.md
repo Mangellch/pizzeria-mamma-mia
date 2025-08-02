@@ -1,12 +1,36 @@
-# React + Vite
+# Pizzería Mamma Mia 🍕
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a pizza e-commerce web application built with **React** and **Vite**. It simulates an online shopping experience where users can register, log in, add pizzas to a shopping cart, and place orders.
 
-Currently, two official plugins are available:
+## Features Implemented
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔐 **User Authentication** (Register, Login, Logout) using JWT tokens.
+- 📦 **Shopping Cart** functionality with persistent state.
+- 🛒 **Checkout system**: sends order data to backend via `/api/checkouts`.
+- 👤 **User Profile** page showing authenticated user email and logout option.
+- 📡 Backend API integration for:
+  - `/api/auth/register`
+  - `/api/auth/login`
+  - `/api/auth/me`
+  - `/api/checkouts`
+- 🧠 State Management using React Context API (`UserContext`, `CartContext`).
+- 💄 Basic UI styled with Bootstrap.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React + Vite
+- React Router DOM
+- Context API
+- Fetch API
+- Bootstrap 5
+
+## Setup
+
+1. Clone the repository
+2. Run `npm install`
+3. Start the dev server with `npm run dev`
+4. Then cd backend
+5. Run `npm install`
+6. `npm start` to run the backend
+
+Make sure the backend is running on `http://localhost:5000` for the API requests to work correctly.
