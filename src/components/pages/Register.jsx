@@ -38,7 +38,7 @@ const Register = () => {
       setEmail('');
       setPassword('');
       setConfirmPassword('');
-      // Aquí puedes redirigir o hacer algo más si quieres
+    
     } else {
       setMessage(result.message || 'Error en el registro');
       setError(true);
